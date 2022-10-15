@@ -1,0 +1,54 @@
+{
+  "name": "subjecto",
+  "version": "0.0.34",
+  "description": "A minimalistic state management library",
+  "main": "dist/cjs/index.js",
+  "types": "dist/cjs/index.d.ts",
+  "module": "dist/esm/index.js",
+  "sideEffects": "false",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./subject": {
+      "import": "./dist/esm/subject.js",
+      "require": "./dist/cjs/subject.js"
+    },
+    "./inspect": {
+      "import": "./dist/esm/inspect.js",
+      "require": "./dist/cjs/inspect.js"
+    }
+  },
+  "scripts": {
+    "prepare": "rm -r dist &&  npm run build",
+    "watch": "tsc --watch",
+    "build": "rm -r dist && tsc -p tsconfig.json && tsc -p tsconfig.json --module commonjs --outDir dist/cjs",
+    "test": "jest",
+    "dev": "node --experimental-specifier-resolution=node dist/cjs/workspace"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testRegex": "(/src/__tests__/.*|(\\.|/)(test|spec))\\.[jt]sx?$",
+    "collectCoverage": true,
+    "collectCoverageFrom": ["**/src/subject.ts"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/paulbrie/subjecto"
+  },
+  "keywords": ["state", "management", "subscribe", "data", "store"],
+  "author": "Paul Brie",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.5.1",
+    "typescript": "^4.1.5"
+  },
+  "dependencies": {
+    "ts-node-dev": "^2.0.0"
+  }
+}
